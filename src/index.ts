@@ -13,8 +13,8 @@ if (require('electron-squirrel-startup')) {
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 768,
+    width: 1024,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -22,6 +22,8 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  mainWindow.on('did-finish-load', () => {
+    mainWindow.setTitle('LICW Challenge Logger');});
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
